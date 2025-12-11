@@ -66,25 +66,6 @@ bindkey -M vicmd 'v' edit-command-lin:w
 # PROMPT - MINIMAL & SQUARED
 # ==========================================
 
-# Git prompt function
-git_prompt() {
-    local branch
-    branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-    if [[ -n $branch ]]; then
-        local status=$(git status --porcelain 2>/dev/null)
-        local dirty=""
-        [[ -n $status ]] && dirty="*"
-        echo " │ %F{white}${branch}${dirty}%f"
-    fi
-}
-
-# Main prompt
-PROMPT='%F{white}%n@%m%f │ %F{white}%~%f$(git_prompt)
-%F{white}▪%f '
-
-# Right prompt: exit code on error
-RPROMPT='%(?..[%F{red}%?%f])'
-
 # ==========================================
 # ENVIRONMENT
 # ==========================================
